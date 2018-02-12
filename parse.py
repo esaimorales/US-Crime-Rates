@@ -1,15 +1,24 @@
 import numpy as np
 
 # returns numpy array with data values, skips feature labels
-def parse_file(file_name):
+def get_feature_values(file_name):
     with open(file_name) as f:
         next(f)
-        return np.array([[float(val) for val in line.split()]for line in f])
+        return np.array([[float(val) for val in line.split()[1:]] for line in f])
+
+
+# returns numpy array with crime rate values, skips feature labels
+def get_crime_rates(file_name):
+    with open(file_name) as f:
+        next(f)
+        return np.array([[float(val) for val in line.split()[:1]] for line in f])
+
 
 # returns numpy array with feature labels
-def get_features(file_name):
+def get_feature_labels(file_name):
     with open(file_name) as f:
         return np.array([val for val in f.readline().split()])
+
 
 # splits data k-fold
 def split_kfold(array, k=5):
