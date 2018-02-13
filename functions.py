@@ -1,32 +1,33 @@
 import numpy as np
 
 def print_shape(M):
-    print 'Matrix Height: ', M.shape[0]
-    print 'Matrix Widht: ', M.shape[1]
+    # print 'Matrix Height: ', M.shape[0]
+    # print 'Matrix Widht: ', M.shape[1]
+    print '(', M.shape[0], 'x', M.shape[1], ')'
 
+
+# returns w (weight-value)
 def weight(X, Y):
     a = np.dot(X.T, X)
-    # a = (X.T)*(X)
-    print a
-    print_shape(a)
-
+    # take inverse
     a = np.linalg.inv(a)
-    print a
-    print_shape(a)
-
     b = np.dot(X.T, Y)
-    # b = (X.T)*(Y)
-    print b
-    print_shape(b)
-
     w = np.dot(a,b)
-    # w = a*b
-    print w
-    print_shape(w)
+
     return w
 
+# returns y-value
 def predict_y(X, w):
     w = w.T
-    y = w * X
-    print y
-    print_shape(y)
+    y = np.dot(w, (X.T))
+
+    return y.T
+
+
+# return RMSE value
+def rmse(prediction, target):
+    return np.sqrt(((prediction - target) ** 2).mean())
+
+# return ridge weight
+# def ridge_weigth(X, Y):
+#     a =

@@ -20,6 +20,12 @@ def get_feature_labels(file_name):
         return np.array([val for val in f.readline().split()])
 
 
+# adds a 1 to the end of every row (instance)
+def add_ones(array):
+    ones = np.ones((array.shape[0], 1))
+    return np.hstack((array, ones))
+
+
 # splits data k-fold
 def split_kfold(array, k=5):
     i, tup, width = 0, (), array.shape[1]
