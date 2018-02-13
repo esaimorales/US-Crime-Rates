@@ -24,8 +24,10 @@ def add_ones(array):
 
 # splits data k-fold
 def split_kfold(array, k=5):
-    i, tup, width = 0, (), array.shape[1]
-    for _ in range(k):
-        tup.append(array[i:width/k])
-        i += width
-    return tup
+    i, splits, height = 0, [], array.shape[0]
+    block = height/k
+
+    for n in range(k):
+        splits.append(array[n*block:(n+1)*block])
+
+    return splits

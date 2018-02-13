@@ -20,9 +20,7 @@ def weight(X, Y):
 def predict_y(X, w):
     w = w.T
     y = np.dot(w, (X.T))
-
     return y.T
-
 
 # return RMSE value
 def rmse(prediction, target):
@@ -34,17 +32,27 @@ def get_id_matrix(matrix):
     size = matrix.shape[1]
     mtx = np.zeros((size, size))
     for i in range(size):
-        mtx[i,i] = matrix[i,i]
+        mtx[i,i] = float(1)
     return mtx
 
 # return ridge weight
-def ridge_weigth(X, Y, l):
+def ridge_weight(X, Y, l):
     a = np.dot(X.T, X)
 
     a2 = l * get_id_matrix(X)
     # take inverse
     a = np.linalg.inv(a + a2)
     b = np.dot(X.T, Y)
+
     w = np.dot(a, b)
 
     return w
+
+
+def linear_grad_descent(x, y):
+
+    # set alpha
+    alpha = 0.00001
+    w_size = x.shape[1]
+
+    return 0
