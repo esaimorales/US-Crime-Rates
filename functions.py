@@ -28,6 +28,23 @@ def predict_y(X, w):
 def rmse(prediction, target):
     return np.sqrt(((prediction - target) ** 2).mean())
 
+# returns identity covariance matrix
+def get_id_matrix(matrix):
+    # get height
+    size = matrix.shape[1]
+    mtx = np.zeros((size, size))
+    for i in range(size):
+        mtx[i,i] = matrix[i,i]
+    return mtx
+
 # return ridge weight
-# def ridge_weigth(X, Y):
-#     a =
+def ridge_weigth(X, Y, l):
+    a = np.dot(X.T, X)
+
+    a2 = l * get_id_matrix(X)
+    # take inverse
+    a = np.linalg.inv(a + a2)
+    b = np.dot(X.T, Y)
+    w = np.dot(a, b)
+
+    return w

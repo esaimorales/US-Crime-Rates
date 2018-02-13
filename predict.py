@@ -2,10 +2,14 @@ from parse import get_feature_values
 from parse import get_crime_rates
 from parse import get_feature_labels
 from parse import add_ones
+from parse import split_kfold
 
 from functions import weight
 from functions import predict_y
 from functions import rmse
+from functions import ridge_weigth
+
+
 # parse data files
 features = get_feature_labels('train.txt')
 
@@ -29,5 +33,14 @@ y_test_prediction = predict_y(test_x, w)
 train_error = rmse(y_train_prediction ,train_y)
 test_error = rmse(y_test_prediction, test_y)
 
-print train_error
-print test_error
+print 'Calculating Linear Regression Error...'
+print 'Training RMSE: ', train_error
+print 'Testing RMSE: ', test_error
+
+lambda_values = [400, 200, 100, 50, 25]
+ridge_weigths = []
+
+k_splits = split_kfold(train_x)
+
+for val in lambda_values:
+    ridge_weigths.append(ridge_weigth(train_x, train_y, val))
