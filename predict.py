@@ -43,7 +43,6 @@ print 'Testing RMSE: ', test_error
 
 # declare lambda values
 lambda_values = [400, 200, 100, 50, 25, 12.5, 6.25, 3.125, 1.5626, 0.78125]
-ridge_weigths = []
 
 k_splits = split_kfold(train_x)
 k_splits_y = split_kfold(train_y)
@@ -138,7 +137,6 @@ print 'Calculating (Gradient Descent) Ridge Regression.... '
 
 # declare lambda values
 lambda_values = [400, 200, 100, 50, 25, 12.5, 6.25, 3.125, 1.5626, 0.78125]
-ridge_weigths = []
 
 k_splits = split_kfold(train_x)
 k_splits_y = split_kfold(train_y)

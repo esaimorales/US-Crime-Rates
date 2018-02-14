@@ -5,7 +5,6 @@ import random
 def print_shape(M):
     print '(', M.shape[0], 'x', M.shape[1], ')'
 
-
 # returns w (weight-value)
 def weight(X, Y):
     a = np.dot(X.T, X)
@@ -41,14 +40,11 @@ def get_id_matrix(matrix):
 def ridge_weight(X, Y, l):
     a = np.dot(X.T, X)
     a2 = l * get_id_matrix(X)
-
     # take inverse
     a = np.linalg.inv(a + a2)
     b = np.dot(X.T, Y)
-
     w = np.dot(a, b)
     return w
-
 
 # Follows formula:
 # W_current = W_previous + alpha*X_transpose (y - X*W_previous)
@@ -86,7 +82,7 @@ def linear_grad_descent(X, Y):
 
     return W_current
 
-
+# Calculate Ridge Regression with Gradient Descent
 def ridge_grad_descent(X, Y, l):
 
     # set alpha
@@ -102,7 +98,6 @@ def ridge_grad_descent(X, Y, l):
     inner_2 = l * W_previous
 
     big_parenthesis = inner_1 - inner_2
-
     W_current = W_previous + big_parenthesis
 
     # print W_current
