@@ -198,6 +198,7 @@ test_y = get_crime_rates('test.txt')
 
 # get ridge gradient descnet weight
 w = ridge_grad_descent(train_x, train_y, min_lambda)
+#w = ridge_weight(train_x, train_y, min_lambda)
 
 # predict y values
 y_train_prediction = predict_y(train_x, w)
